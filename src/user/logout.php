@@ -1,8 +1,16 @@
-<?php 
+<?php
 session_start();
-if(isset($_COOKIE['userID'])){ 
-$user_id = $_COOKIE['userID'];
-setcookie('userID', '$user_id', 1, '/');
-};
-header('location:../../home');
-?>
+
+// Unset all session variables
+session_unset();
+
+// Destroy the session
+session_destroy();
+
+// Delete the userID cookie
+setcookie('userID', '', time() - 3600, '/', '', true, true);
+
+// Redirect to home with cache buster
+header('Location: /home?v=' . time());
+exit;
+
