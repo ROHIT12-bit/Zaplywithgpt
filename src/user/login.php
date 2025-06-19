@@ -1,51 +1,61 @@
-<?php 
-
-require_once($_SERVER['DOCUMENT_ROOT'] . '/_config.php');
+<?php
 session_start();
 
-if(isset($_COOKIE['userID'])){
-  header('location:../../home');
-  exit();
-}
+// Prevent page from being cached
+header("Cache-Control: no-cache, no-store, must-revalidate");
+header("Pragma: no-cache");
+header("Expires: 0");
+header("Vary: Cookie");
 
+require_once($_SERVER['DOCUMENT_ROOT'] . '/_config.php');
+
+// If already logged in, redirect to home
+if (isset($_SESSION['userID']) || isset($_COOKIE['userID'])) {
+    header('Location: /home');
+    exit;
+}
 
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-if(isset($_POST['submit']) || isset($_POST['anilist_login'])){
-   $login = mysqli_real_escape_string($conn, $_POST['login']);
-   $password = $_POST['password'];
-   $stmt = $conn->prepare("SELECT * FROM users WHERE username = ? OR email = ?");
-   $stmt->bind_param("ss", $_POST['login'], $_POST['login']);
-   $stmt->execute();
-   $result = $stmt->get_result();
-   
-   if($result->num_rows > 0){
-      $row = $result->fetch_assoc();
-      if(password_verify($_POST['password'], $row['password'])) {
-          $_SESSION['userID'] = $row['id'];
-          setcookie('userID', $row['id'], time() + 60*60*24*30*12, '/');
-          
-          if(isset($_GET['animeId'])){
-              $animeId = $_GET['animeId'];
-              header('location:../anime/'.$animeId);
-              exit();
-          } elseif(isset($_GET['redirect'])) {
-              $redirectUrl = $_GET['redirect'];
-              header('location:'.$redirectUrl);
-              exit();
-          } else {
-              header('location:../../home');
-              exit();
-          }
-      } else {
-          $message[] = 'Incorrect password!';
-      }
-   } else {
-      $message[] = 'User not found!';
-   }
+if (isset($_POST['submit']) || isset($_POST['anilist_login'])) {
+    $login = mysqli_real_escape_string($conn, $_POST['login']);
+    $password = $_POST['password'];
+
+    $stmt = $conn->prepare("SELECT * FROM users WHERE username = ? OR email = ?");
+    $stmt->bind_param("ss", $_POST['login'], $_POST['login']);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+
+        if (password_verify($_POST['password'], $row['password'])) {
+            $_SESSION['userID'] = $row['id'];
+
+            // Set secure cookie for 1 year
+            setcookie('userID', $row['id'], time() + 60*60*24*30*12, '/', '', true, true);
+
+            // Redirect logic
+            if (isset($_GET['animeId'])) {
+                header('Location: /anime/' . $_GET['animeId']);
+                exit;
+            } elseif (isset($_GET['redirect'])) {
+                header('Location: ' . $_GET['redirect']);
+                exit;
+            } else {
+                header('Location: /home');
+                exit;
+            }
+        } else {
+            $message[] = 'Incorrect password!';
+        }
+    } else {
+        $message[] = 'User not found!';
+    }
 }
 ?>
+
 
 
 <!DOCTYPE html>
