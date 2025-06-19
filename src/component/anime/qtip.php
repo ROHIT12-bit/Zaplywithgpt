@@ -1,7 +1,10 @@
 <?php
 
 function fetchAnimeData($animeId) {
+    if (session_status() === PHP_SESSION_NONE) {
     session_start();
+}
+
 
     require_once($_SERVER['DOCUMENT_ROOT'] . '/_config.php');
 
