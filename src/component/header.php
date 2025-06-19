@@ -1,4 +1,13 @@
+<?php
+require_once($_SERVER['DOCUMENT_ROOT'] . '/auth.php');
 
+if (!headers_sent()) {
+    header("Cache-Control: no-cache, no-store, must-revalidate");
+    header("Pragma: no-cache");
+    header("Expires: 0");
+    header("Vary: Cookie");
+}
+?>
 
 
 <div id="sidebar_menu">
@@ -283,8 +292,7 @@
         </div>
        
         <?php
-        if (isset($_COOKIE['userID'])) {
-            $user_id = $_COOKIE['userID'];
+        if (defined('LOGGED_IN') && LOGGED_IN) {
             $select = "SELECT * FROM users WHERE id = '$user_id'";
             $result = mysqli_query($conn, $select);
             if (mysqli_num_rows($result) > 0) {
