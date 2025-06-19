@@ -1,7 +1,6 @@
 <?php
-session_start();
+require_once($_SERVER['DOCUMENT_ROOT'] . '/auth.php');
 require_once($_SERVER['DOCUMENT_ROOT'] . '/_config.php');
-
 
 
 define('BASE_API_URL', $zpi);
@@ -124,8 +123,7 @@ $data = $data['results'];
         <div id="main-wrapper">
             <div class="container">
                 <div id="main-content" class="lazy-component" data-component="main-content">
-                    <?php if (isset($_COOKIE['userID'])) {
-                        $user_id = $_COOKIE['userID'];
+                    <?php if (defined('LOGGED_IN') && LOGGED_IN) {
                         $sql = "SELECT * FROM watch_history WHERE user_id = ? GROUP BY anime_id, episode_number  ORDER BY MAX(id) DESC  LIMIT 4";
                         $stmt = mysqli_prepare($conn, $sql);
                         mysqli_stmt_bind_param($stmt, "i", $user_id);
