@@ -1,7 +1,7 @@
 <?php
-
-require_once('src/component/anime/qtip.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/auth.php');
 require_once($_SERVER['DOCUMENT_ROOT'] . '/_config.php');
+require_once('src/component/anime/qtip.php');
 
 error_reporting(E_ALL); 
 ini_set('display_errors', 1); 
