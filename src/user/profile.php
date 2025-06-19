@@ -1,19 +1,16 @@
-<?php 
-require_once($_SERVER['DOCUMENT_ROOT'] . '/_config.php'); 
+<?php
+require_once($_SERVER['DOCUMENT_ROOT'] . '/auth.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/_config.php');
 
-// Ensure $conn is included
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-session_start();
-
-// Check if user is logged in
-if (!isset($_COOKIE['userID'])) {
+if (!LOGGED_IN) {
     header('location:/login');
     exit();
 }
 
-$user_id = $_COOKIE['userID'];
+
 $stmt = $conn->prepare("SELECT * FROM users WHERE id = ?");
 $stmt->bind_param("i", $user_id);
 $stmt->execute();
