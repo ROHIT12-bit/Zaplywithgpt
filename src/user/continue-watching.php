@@ -1,18 +1,12 @@
-<?php 
+<?php
+require_once($_SERVER['DOCUMENT_ROOT'] . '/auth.php');
 require_once($_SERVER['DOCUMENT_ROOT'] . '/_config.php');
-session_start();
 
-//error_reporting(E_ALL);
-//ini_set('display_errors', 1);
-
-// Check if the user is logged in
-if (!isset($_COOKIE['userID'])) {
-    header('location:/login');
+if (!LOGGED_IN) {
+    header('Location: /login');
     exit();
 }
 
-// Get user data
-$user_id = $_COOKIE['userID'];
 $stmt = $conn->prepare("SELECT * FROM users WHERE id = ?");
 $stmt->bind_param("i", $user_id);
 $stmt->execute();
