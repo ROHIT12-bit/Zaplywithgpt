@@ -1,7 +1,8 @@
 <?php
-
-require_once('src/component/anime/qtip.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/auth.php');
 require_once($_SERVER['DOCUMENT_ROOT'] . '/_config.php');
+require_once('src/component/anime/qtip.php');
+
 
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
@@ -16,6 +17,24 @@ $animeId = $parts[0];
 parse_str($parts[1] ?? '', $queryParams);
 $episodeId = $queryParams['ep'] ?? null;
 $animeData = fetchAnimeData($animeId);
+
+if (defined('LOGGED_IN') && LOGGED_IN && isset($animeData['id']) && isset($episodeId)) {
+    $user_id = $_SESSION['userID'];
+
+    $stmt = $conn->prepare("SELECT id FROM watch_history WHERE user_id = ? AND anime_id = ? AND episode_number = ?");
+    $stmt->bind_param("isi", $user_id, $animeData['id'], $episodeId);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows === 0) {
+        $stmt = $conn->prepare("INSERT INTO watch_history (user_id, anime_id, episode_number)
+                                VALUES (?, ?, ?)");
+        $stmt->bind_param("isi", $user_id, $animeData['id'], $episodeId);
+        $stmt->execute();
+    }
+}
+
+
 
 $episodelistUrl = "$zpi/episodes/$animeId";
 $episodelistResponse = file_get_contents($episodelistUrl);
@@ -780,10 +799,10 @@ $totalVotes = $like_count + $dislike_count;
                         <?php
                         $animeId = $animeData['id'];
                         $episodeId = isset($_GET['ep']) ? $_GET['ep'] : '1';
-                        $user_id = $_COOKIE['userID'] ?? null;
                         $user = null;
 
-                        if ($user_id) {
+                        if (defined('LOGGED_IN') && LOGGED_IN) {
+                            $user_id = $_SESSION['userID']; // ✅ Fix added
                             $stmt = $conn->prepare("SELECT username, image FROM users WHERE id = ?");
                             if ($stmt === false) {
                                 die("Database prepare failed: " . mysqli_error($conn));
@@ -792,11 +811,12 @@ $totalVotes = $like_count + $dislike_count;
                             $stmt->execute();
                             $user = $stmt->get_result()->fetch_assoc();
                         }
+
                         $commentData = [
                             'episode_id' => $episodeId,
                             'anime_id' => $animeId,
                             'user_profile' => [
-                                'user_id' => $user_id,
+                                'user_id' => $user_id ?? null,
                                 'username' => $user['username'] ?? '',
                                 'avatar_url' => !empty($user['image']) ? $user['image'] : '',
                             ]
@@ -804,6 +824,8 @@ $totalVotes = $like_count + $dislike_count;
 
                         include('src/component/comment.php');
                         ?>
+
+
                     </section>
 
                     <section class="w-full flex items-center justify-center">
