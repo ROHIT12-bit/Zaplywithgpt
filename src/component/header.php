@@ -10,10 +10,21 @@
                
                 <a href="<?= $websiteUrl ?>/anime/most-popular" class="hst-item" data-toggle="tooltip"
                     data-original-title="Popular Anime List">
-                    <div class="hst-icon"><i class="fas fa-star"></i></div>
+                    <div class="hst-icon"><i class="fa-solid fa-fire"></i></div>
                     <div class="name"><span>Popular</span></div>
                 </a>
-                <a href="<?= $websiteUrl ?>/random" rel="nofollow" class="hst-item" data-toggle="tooltip"
+
+                <div class="hst-item" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Select language of anime name to display.">
+                    <div class="select-anime-name toggle-lang"><span class="en">EN</span><span class="jp">JP</span></div>
+                    <div class="name"><span class="lang-display">English</span></div>
+                </div>
+
+                <a href="<?= $websiteUrl ?>/anime/movie" class="hst-item" data-toggle="tooltip"
+                    data-original-title="Anime Movies">
+                    <div class="hst-icon"><i class="fa-solid fa-clapperboard"></i></div>
+                    <div class="name"><span>Movie</span></div>
+                </a>
+                <a href="<?= $websiteUrl ?>/random" class="hst-item" data-toggle="tooltip"
                     data-original-title="Select Random Anime">
                     <div class="hst-icon"><i class="fas fa-random"></i></div>
                     <div class="name"><span>Random</span></div>
@@ -43,8 +54,8 @@
                             title="Action">Action</a> </li>
                     <li class="nav-item"> <a class="nav-link" href="<?= $websiteUrl ?>/genre/adventure"
                             title="Adventure">Adventure</a> </li>
-                    <li class="nav-item"> <a class="nav-link" href="<?= $websiteUrl ?>/genre/cars" title="Cars">Cars</a>
-                    </li>
+                    <li class="nav-item"> <a class="nav-link" href="<?= $websiteUrl ?>/genre/cars" 
+                            title="Cars">Cars</a></li>
                     <li class="nav-item"> <a class="nav-link" href="<?= $websiteUrl ?>/genre/comedy"
                             title="Comedy">Comedy</a> </li>
                     <li class="nav-item"> <a class="nav-link" href="<?= $websiteUrl ?>/genre/dementia"
@@ -57,18 +68,20 @@
                             title="Ecchi">Ecchi</a></li>
                     <li class="nav-item"> <a class="nav-link" href="<?= $websiteUrl ?>/genre/fantasy"
                             title="Fantasy">Fantasy</a> </li>
-                    <li class="nav-item"> <a class="nav-link" href="<?= $websiteUrl ?>/genre/game" title="Game">Game</a>
-                    </li>
+                    <li class="nav-item"> <a class="nav-link" href="<?= $websiteUrl ?>/genre/game" 
+                            title="Game">Game</a></li>
                     <li class="nav-item"> <a class="nav-link" href="<?= $websiteUrl ?>/genre/harem"
                             title="Harem">Harem</a></li>
                     <li class="nav-item"> <a class="nav-link" href="<?= $websiteUrl ?>/genre/historical"
                             title="Historical">Historical</a> </li>
-                    <li class="nav-item"> <a class="nav-link" href="<?= $websiteUrl ?>/genre/horror"
+                    <li class="nav-item"> <a class="nav-link" href="<?= $websiteUrl ?>/genre/Horror"
                             title="Horror">Horror</a> </li>
+                    <li class="nav-item"> <a class="nav-link" href="<?= $websiteUrl ?>/genre/Isekai"
+                            title="Isekai">Isekai</a> </li>
                     <li class="nav-item"> <a class="nav-link" href="<?= $websiteUrl ?>/genre/josei"
                             title="Josei">Josei</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="<?= $websiteUrl ?>/genre/kids" title="Kids">Kids</a>
-                    </li>
+                    <li class="nav-item"> <a class="nav-link" href="<?= $websiteUrl ?>/genre/kids" 
+                            title="Kids">Kids</a></li>
                     <li class="nav-item"> <a class="nav-link" href="<?= $websiteUrl ?>/genre/magic"
                             title="Magic">Magic</a></li>
                     <li class="nav-item"> <a class="nav-link" href="<?= $websiteUrl ?>/genre/martial-arts"
@@ -93,8 +106,8 @@
                             title="Samurai">Samurai</a> </li>
                     <li class="nav-item"> <a class="nav-link" href="<?= $websiteUrl ?>/genre/school"
                             title="School">School</a> </li>
-                    <li class="nav-item"> <a class="nav-link" href="<?= $websiteUrl ?>/genre/sci-fi" title="Sci Fi">Sci
-                            Fi</a> </li>
+                    <li class="nav-item"> <a class="nav-link" href="<?= $websiteUrl ?>/genre/sci-fi" 
+                            title="Sci-Fi">Sci-Fi</a> </li>
                     <li class="nav-item"> <a class="nav-link" href="<?= $websiteUrl ?>/genre/seinen"
                             title="Seinen">Seinen</a> </li>
                     <li class="nav-item"> <a class="nav-link" href="<?= $websiteUrl ?>/genre/shoujo"
@@ -119,10 +132,6 @@
                             title="Thriller">Thriller</a> </li>
                     <li class="nav-item"> <a class="nav-link" href="<?= $websiteUrl ?>/genre/vampire"
                             title="Vampire">Vampire</a> </li>
-                    <li class="nav-item"> <a class="nav-link" href="<?= $websiteUrl ?>/genre/yaoi" title="Yaoi">Yaoi</a>
-                    </li>
-                    <li class="nav-item"> <a class="nav-link" href="<?= $websiteUrl ?>/genre/yuri" title="Yuri">Yuri</a>
-                    </li>
                     <li class="nav-item nav-more">
                         <a class="nav-link"><i class="fas fa-plus mr-2"></i>More</a>
                     </li>
