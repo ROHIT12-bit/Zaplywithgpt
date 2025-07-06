@@ -145,22 +145,29 @@ $characterDataJson = json_encode($characterData, JSON_PRETTY_PRINT);
                             </div>
                             <div class="anisc-detail">
                                 <div class="prebreadcrumb">
-                                 <nav aria-label="breadcrumb">
-                                      <ol class="breadcrumb">
-                                        <li class="breadcrumb-item"><a href="/home">Home</a></li>
-                                        <li class="breadcrumb-item">
-                                              <a href="/anime/<?= strtolower($animeData['showType'] ?? 'tv') ?>">
-                                                <?= strtoupper($animeData['showType'] ?? 'TV') ?>
-                                            </a>
-                                        </li>
-                                        <li class="breadcrumb-item dynamic-name active"
-                                            data-jname="<?= htmlspecialchars($animeData['japanese'] ?? $animeData['title']) ?>">
-                                            <?= htmlspecialchars($animeData['title'] ?? $animeData['japanese']) ?>
-                                        </li>
-                                    </ol>
+                                <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="/home">Home</a></li>
+                                    <li class="breadcrumb-item">
+                                        <a href="/anime/<?= strtolower($animeData['showType'] ?? 'tv') ?>">
+                                            <?= strtoupper($animeData['showType'] ?? 'TV') ?>
+                                        </a>
+                                    </li>
+                                    <li class="breadcrumb-item dynamic-name active"
+                                        data-title="<?= htmlspecialchars($animeData['title']) ?>"
+                                        data-jname="<?= htmlspecialchars($animeData['japanese']) ?>">
+                                        <?= htmlspecialchars($animeData['title']) ?>
+                                    </li>
+
+                                    </li>
+                                </ol>
                                 </nav>
                             </div>
-                                <h2 class="film-name dynamic-name" data-jname="<?= htmlspecialchars($animeData['japanese'] ?? $animeData['title']) ?>"><?= htmlspecialchars($animeData['title'] ?? $animeData['japanese']) ?></h2>
+                                <h2 class="film-name dynamic-name"
+                                    data-title="<?= htmlspecialchars($animeData['title']) ?>"
+                                    data-jname="<?= htmlspecialchars($animeData['japanese']) ?>">
+                                    <?= htmlspecialchars($animeData['title']) ?>
+                                </h2>
                                 <div id="mal-sync"></div>
                                 <div class="film-stats">
                                     <div class="tick">
