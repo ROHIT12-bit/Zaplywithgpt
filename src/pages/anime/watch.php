@@ -220,15 +220,19 @@ $totalVotes = $like_count + $dislike_count;
                             <div class="anis-cover"
                                 style="background-image: url('<?= htmlspecialchars($animeData['poster']) ?>')"></div>
                         </div>
-                        <div class="anis-watch-wrap">
-                            <div class="prebreadcrumb">
-                                <nav aria-label="breadcrumb">
-                                    <ol class="breadcrumb">
-                                        <li class="breadcrumb-item"><a href="/home" title="Home">Home</a></li>
-                                        <li class="breadcrumb-item"><a href="/anime/tv">TV</a></li>
+                        <div class="anisc-detail">
+                                <div class="prebreadcrumb">
+                                 <nav aria-label="breadcrumb">
+                                      <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="/home">Home</a></li>
+                                        <li class="breadcrumb-item">
+                                              <a href="/anime/<?= strtolower($animeData['showType'] ?? 'tv') ?>">
+                                                <?= strtoupper($animeData['showType'] ?? 'TV') ?>
+                                            </a>
+                                        </li>
                                         <li class="breadcrumb-item dynamic-name active"
-                                            data-jname="<?= htmlspecialchars($animeData['title']) ?>">
-                                            <?= htmlspecialchars($animeData['title']) ?>
+                                            data-jname="<?= htmlspecialchars($animeData['japanese'] ?? $animeData['title']) ?>">
+                                            <?= htmlspecialchars($animeData['title'] ?? $animeData['japanese']) ?>
                                         </li>
                                     </ol>
                                 </nav>
