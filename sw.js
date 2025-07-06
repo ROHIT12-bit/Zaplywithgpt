@@ -17,7 +17,6 @@ const urlsToCache = [
     '/src/assets/css/bootstrap.min.css',
     '/src/assets/css/search.css',
     '/src/assets/js/app.min.js',
-    '/src/assets/js/search.js',
     '/src/assets/js/function.js',
     '/public/logo/favicon.png',
     '/public/logo/logo.png',
