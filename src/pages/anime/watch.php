@@ -222,19 +222,22 @@ $totalVotes = $like_count + $dislike_count;
                         </div>
                         <div class="anisc-detail">
                                 <div class="prebreadcrumb">
-                                 <nav aria-label="breadcrumb">
-                                      <ol class="breadcrumb">
-                                        <li class="breadcrumb-item"><a href="/home">Home</a></li>
-                                        <li class="breadcrumb-item">
-                                              <a href="/anime/<?= strtolower($animeData['showType'] ?? 'tv') ?>">
-                                                <?= strtoupper($animeData['showType'] ?? 'TV') ?>
-                                            </a>
-                                        </li>
-                                        <li class="breadcrumb-item dynamic-name active"
-                                            data-jname="<?= htmlspecialchars($animeData['japanese'] ?? $animeData['title']) ?>">
-                                            <?= htmlspecialchars($animeData['title'] ?? $animeData['japanese']) ?>
-                                        </li>
-                                    </ol>
+                                <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="/home">Home</a></li>
+                                    <li class="breadcrumb-item">
+                                        <a href="/anime/<?= strtolower($animeData['showType'] ?? 'tv') ?>">
+                                            <?= strtoupper($animeData['showType'] ?? 'TV') ?>
+                                        </a>
+                                    </li>
+                                    <li class="breadcrumb-item dynamic-name active"
+                                        data-title="<?= htmlspecialchars($animeData['title']) ?>"
+                                        data-jname="<?= htmlspecialchars($animeData['japanese']) ?>">
+                                        <?= htmlspecialchars($animeData['title']) ?>
+                                    </li>
+
+                                    </li>
+                                </ol>
                                 </nav>
                             </div>
                             <div class="anis-watch anis-watch-tv">
