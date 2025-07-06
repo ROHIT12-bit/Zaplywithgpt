@@ -173,11 +173,13 @@
                                             <?php endif; ?>
 
                                             
-                                            
-                                            <span class="dot"></span><?php echo htmlspecialchars($anime['tvInfo']['showType']); ?>
-                                            <?php if(isset($anime['tvInfo']['duration'])): ?>
-                                            <span class="fdi-item"><?php echo htmlspecialchars($anime['tvInfo']['duration']); ?></span>
-                                            <?php endif; ?>
+                                            <div>
+                                                <span class="dot"></span><?php echo $anime['tvInfo']['showType']; ?>
+                                                
+                                                <?php if(isset($anime['tvInfo']['duration'])): ?>
+                                                <span class="fdi-item"><?php echo $anime['tvInfo']['duration']; ?></span>
+                                                <?php endif; ?>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -238,11 +240,13 @@
                                             <?php endif; ?>
 
                                             
-                                            
-                                            <span class="dot"></span><?php echo htmlspecialchars($anime['tvInfo']['showType']); ?>
-                                            <?php if(isset($anime['tvInfo']['duration'])): ?>
-                                            <span class="fdi-item"><?php echo htmlspecialchars($anime['tvInfo']['duration']); ?></span>
-                                            <?php endif; ?>
+                                            <div>
+                                                <span class="dot"></span><?php echo $anime['tvInfo']['showType']; ?>
+                                                
+                                                <?php if(isset($anime['tvInfo']['duration'])): ?>
+                                                <span class="fdi-item"><?php echo $anime['tvInfo']['duration']; ?></span>
+                                                <?php endif; ?>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
