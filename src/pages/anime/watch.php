@@ -235,8 +235,6 @@ $totalVotes = $like_count + $dislike_count;
                                         data-jname="<?= htmlspecialchars($animeData['japanese']) ?>">
                                         <?= htmlspecialchars($animeData['title']) ?>
                                     </li>
-
-                                    </li>
                                 </ol>
                                 </nav>
                             </div>
