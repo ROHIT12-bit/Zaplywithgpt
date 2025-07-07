@@ -158,8 +158,6 @@ $characterDataJson = json_encode($characterData, JSON_PRETTY_PRINT);
                                         data-jname="<?= htmlspecialchars($animeData['japanese']) ?>">
                                         <?= htmlspecialchars($animeData['title']) ?>
                                     </li>
-
-                                    </li>
                                 </ol>
                                 </nav>
                             </div>
