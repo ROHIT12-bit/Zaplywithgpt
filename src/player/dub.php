@@ -62,10 +62,28 @@ if (!isset($data['results']['streamingLink']['link']['file'])) {
 $streamingData = $data['results']['streamingLink'];
 $m3u8_url = $streamingData['link']['file'];
 $video_url = "{$proxy}{$m3u8_url}&headers=%7B%22Referer%22%3A%22https%3A%2F%2Fmegacloud.club%2F%22%7D";
-$intro_start = $streamingData['intro']['start'] ?? 0;
-$intro_end = $streamingData['intro']['end'] ?? 0;
-$outro_start = $streamingData['outro']['start'] ?? 0;
-$outro_end = $streamingData['outro']['end'] ?? 0;
+$intro = $streamingData['intro'] ?? null;
+$outro = $streamingData['outro'] ?? null;
+if (is_array($intro) && isset($intro[0], $intro[1])) {
+    $intro_start = (int)$intro[0];
+    $intro_end   = (int)$intro[1];
+} elseif (is_array($intro) && isset($intro['start'], $intro['end'])) {
+    $intro_start = (int)$intro['start'];
+    $intro_end   = (int)$intro['end'];
+} else {
+    $intro_start = 0;
+    $intro_end   = 0;
+}
+if (is_array($outro) && isset($outro[0], $outro[1])) {
+    $outro_start = (int)$outro[0];
+    $outro_end   = (int)$outro[1];
+} elseif (is_array($outro) && isset($outro['start'], $outro['end'])) {
+    $outro_start = (int)$outro['start'];
+    $outro_end   = (int)$outro['end'];
+} else {
+    $outro_start = 0;
+    $outro_end   = 0;
+}
 $thumbnail_url = null;
 $subtitles = [];
 
