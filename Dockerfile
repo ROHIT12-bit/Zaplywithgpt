@@ -1,16 +1,16 @@
 # Use official PHP image
 FROM php:8.2-cli
 
-# Install additional PHP extensions if needed
-# RUN docker-php-ext-install mysqli pdo pdo_mysql
+# Install mysqli and pdo_mysql extensions
+RUN docker-php-ext-install mysqli pdo pdo_mysql
 
 # Set working directory
 WORKDIR /app
 
-# Copy all files into the container
+# Copy all files
 COPY . .
 
-# Expose the port that Render will use
+# Expose port 10000 for Render
 EXPOSE 10000
 
 # Start PHP built-in server
