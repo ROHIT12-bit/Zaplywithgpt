@@ -84,7 +84,23 @@ require_once(__DIR__ . '/_config.php');
     <!-- JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js?v=<?= $version ?>"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js?v=<?= $version ?>"></script>
-    <script src="/src/assets/js/search.js?v=<?= $version ?>"></script>
-    <script src="/public/rss-fetch.js?v=<?= $version ?>"></script>
+    <script>
+        // Replace this with your actual loader or adapt for your backend/API!
+        $.getJSON("<?= $zpi ?>/recent-release", function(data) {
+            let html = '';
+            if (Array.isArray(data) && data.length > 0) {
+                data.forEach(anime => {
+                    html += `<div class="anime-episode mb-2">
+                        <strong>${anime.animeTitle}</strong> - <a href="${anime.animeUrl}" class="text-info" target="_blank">Watch</a>
+                    </div>`;
+                });
+            } else {
+                html = '<p>No recent anime found.</p>';
+            }
+            $('#anime-list').html(html);
+        }).fail(function() {
+            $('#anime-list').html('<p class="text-danger">Failed to load anime. Check your API!</p>');
+        });
+    </script>
 </body>
 </html>
