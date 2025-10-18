@@ -1,42 +1,32 @@
-
 <?php 
 
-// Connect to Clever Cloud MySQL using environment variables
-$conn = new mysqli(
-    getenv('DB_HOST'), 
-    getenv('DB_USER'), 
-    getenv('DB_PASS'), 
-    getenv('DB_NAME'),
-    getenv('DB_PORT') ?? 3306
-);
+// ✅ Database connection (fill with your own)
+$conn = new mysqli("b4dsoywxryvkguc7uavy-mysql.services.clever-cloud.com", "uoi1eae1fi84rcok", "kd3stZ5giBeOwJwBwabd", "b4dsoywxryvkguc7uavy");
 
 if ($conn->connect_error) {
     error_log("Database connection failed: " . $conn->connect_error);
     echo("Database connection failed.");
-    exit; // stop further execution if DB connection fails
 }
 
-// Website settings
-$websiteTitle = "AniPaca";
+// ✅ Website Information
+$websiteTitle = "Zaply";
 $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? "https" : "http";
 $websiteUrl = "{$protocol}://{$_SERVER['SERVER_NAME']}";
 $websiteLogo = $websiteUrl . "/public/logo/logo.png";
-$contactEmail = "raisulentertainment@gmail.com";
-
+$contactEmail = "zaplyteam@gmail.com";
 $version = "1.0.2";
 
-// Social links
-$discord = "https://dcd.gg/anipaca";
-$github = "https://github.com/PacaHat";
-$telegram = "https://t.me/anipaca";
-$instagram = "https://www.instagram.com/pxr15_"; 
+// ✅ Social Links
+$discord = "https://discord.gg/zaply";
+$github = "https://github.com/ROHIT12-bit/ROHITREDDY69";
+$telegram = "https://t.me/ROHITREDDY69";
+$instagram = "https://www.instagram.com/rohitreddy12345";
 
-// API and proxy settings
-$zpi = "https://your-hosted-api.com/api"; // https://github.com/PacaHat/zen-api
+// ✅ API and Proxy setup
+$zpi = "https://your-hosted-api.com/api"; // replace later
 $proxy = $websiteUrl . "/src/ajax/proxy.php?url=";
 
-// Faster loading option
-// $proxy = "https://your-hosted-proxy.com/proxy?url="; // https://github.com/PacaHat/shrina-proxy
-
-// Banner image
+// ✅ Banner
 $banner = $websiteUrl . "/public/images/banner.png";
+
+?>
